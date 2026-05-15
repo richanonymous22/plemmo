@@ -3,6 +3,44 @@ document.addEventListener('DOMContentLoaded', () => {
   // Sync GSAP (Lenis removed)
   gsap.registerPlugin(ScrollTrigger);
 
+  // 1. Mobile Menu Logic
+  const hamburgerBtn = document.querySelector('.hamburger-btn');
+  const closeMenuBtn = document.querySelector('.close-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const mobileLinks = document.querySelectorAll('.mobile-menu-content a');
+
+  function toggleMobileMenu() {
+    mobileMenu.classList.toggle('active');
+    const isActive = mobileMenu.classList.contains('active');
+    hamburgerBtn.setAttribute('aria-expanded', isActive);
+    document.body.style.overflow = isActive ? 'hidden' : '';
+  }
+
+  if (hamburgerBtn && closeMenuBtn && mobileMenu) {
+    hamburgerBtn.addEventListener('click', toggleMobileMenu);
+    closeMenuBtn.addEventListener('click', toggleMobileMenu);
+    
+    // Close on link click
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        if (mobileMenu.classList.contains('active')) toggleMobileMenu();
+      });
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+        toggleMobileMenu();
+      }
+    });
+
+    // Close on Backdrop click
+    const backdrop = document.querySelector('.mobile-menu-backdrop');
+    if (backdrop) {
+      backdrop.addEventListener('click', toggleMobileMenu);
+    }
+  }
+
   // 2. Custom Cursor Logic
   const cursorDot = document.querySelector('.cursor-dot');
   
@@ -93,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const gallerySection = document.querySelector('.sleek-gallery-section');
   const galleryTrack = document.querySelector('.gallery-track');
   
-  if(gallerySection && galleryTrack) {
+  if(gallerySection && galleryTrack && window.innerWidth > 768) {
     let scrollTween = gsap.to(galleryTrack, {
       x: () => -(galleryTrack.scrollWidth - window.innerWidth) + "px",
       ease: "none",
@@ -266,7 +304,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const stickySteps = document.querySelectorAll('.sticky-step');
   const stickyImages = document.querySelectorAll('.sticky-image');
   
-  if (stickySteps.length > 0) {
+  if (stickySteps.length > 0 && window.innerWidth > 768) {
     stickySteps.forEach((step, index) => {
       ScrollTrigger.create({
         trigger: step,

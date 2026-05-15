@@ -2,11 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Plemmo — Absolute Peak Performance</title>
   <link rel="icon" type="image/png" href="images/logo.png">
   
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="mobile.css">
   
   <!-- Iconify for beautiful, crisp icons instead of emojis -->
   <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
@@ -75,6 +76,37 @@
     <div class="nav-actions">
       <a href="tel:07842088092" class="btn-glass magnetic" data-strength="20">07842 088092</a>
       <a href="#quote" class="btn-solid magnetic" data-strength="40">Get a Free Quote</a>
+    </div>
+    
+    <button class="hamburger-btn" aria-label="Open Mobile Menu" aria-expanded="false" aria-controls="mobile-menu">
+      <iconify-icon icon="solar:hamburger-menu-bold-duotone"></iconify-icon>
+    </button>
+  </div>
+
+  <!-- Mobile Menu Overlay -->
+  <div id="mobile-menu" class="mobile-menu" aria-hidden="true">
+    <div class="mobile-menu-backdrop"></div>
+    <div class="mobile-menu-panel">
+      <div class="mobile-menu-header">
+        <div class="nav-logo">
+          <img src="images/logo.png" alt="Plemmo Logo" class="nav-logo-img">
+          Plemmo
+        </div>
+        <button class="close-menu-btn" aria-label="Close Mobile Menu">
+          <iconify-icon icon="solar:close-circle-bold-duotone"></iconify-icon>
+        </button>
+      </div>
+      <div class="mobile-menu-content">
+        <a href="#card-machines">Card Machines</a>
+        <a href="#epos">EPOS Systems</a>
+        <a href="#funding">Business Funding</a>
+        <a href="#signage">Signage</a>
+        
+        <div class="mobile-menu-actions">
+          <a href="tel:07842088092" class="btn-outline" style="width: 100%; justify-content: center; margin-bottom: 16px;">07842 088092</a>
+          <a href="#quote" class="btn-solid" style="width: 100%; justify-content: center;">Get a Free Quote</a>
+        </div>
+      </div>
     </div>
   </div>
 </nav>
